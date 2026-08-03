@@ -1,4 +1,7 @@
 # ColorLight
+**ColorLight / With Shader / Vanilla**
+
+![Mod Enable / With Shader / Vanilla](https://cdn.modrinth.com/data/cached_images/54a6e293b9c6827ac9da645298fb0942abb07dc1_0.webp)
 
 ColorLight is an attempt to bring colored lighting support to a huge variety of mods and resource packs without relying on a predefined list of light-emitting blocks, while still allowing that list to be customized if desired.
 
@@ -21,87 +24,31 @@ Light colors can be customized using:
 * Resource packs
 * Commands
 
-### Fun Tab
+You can create custom light sources using commands.
 
-The mod includes a separate **"Fun"** tab designed for experimenting with lighting effects. For example, you can:
+### Supported versions
 
-* Adjust the pixel scanner balance.
-* Increase the light radius.
-* Change light intensity.
-* And more.
-
-
-<details>
-<summary>Commands</summary>
-
-**Get information about the light color of the block you're looking at**
-
-```text
-/colorlight info
-```
-
-**Get information about the light color of a specific block**
-
-```text
-/colorlight info_block <block>
-```
-
-**Change the light color of a specific block**
-
-```text
-/colorlight repaint <block> <red> <green> <blue> <light_strength>
-```
-
-**Restore the default light color of a specific block**
-
-```text
-/colorlight repaint_return <block>
-```
-
-**Change the light color of the block you're looking at**
-
-```text
-/colorlight repaint_block <red> <green> <blue> <light_strength>
-```
-
-**Restore (or remove) the custom light color of the block you're looking at**
-
-```text
-/colorlight repaint_block_return
-```
-
-**Add colored light to any block you're looking at**
-
-```text
-/colorlight add_light <red> <green> <blue> <light_strength> <save_source_position>
-```
-
-**Remove colored light from any block you're looking at**
-
-```text
-/colorlight remove_light
-```
-
-**Create a customizable glowing light block**
-
-```text
-/colorlight add_light_block <red> <green> <blue> <block_size> <light_strength> <save_source_position>
-```
-
-**Remove a customizable glowing light block you're looking at**
-
-```text
-/colorlight remove_light_block
-```
-
-</details>
-
+| Version | Suport | Progress |
+| :--- | :---: | :---: |
+| - 1.20.1 | ✔️ | Development |
+| - 1.21.1 | ✔️ Priority | Сompleted |
+| - 1.21.2-3 | ❌ | Won't be any |
+| - 1.21.4 | ❌ | Won't be any |
+| - 1.21.5 | ❌ | Won't be any |
+| - 1.21.6-8 | ❌ | Won't be any |
+| - 1.21.9-10 | ❌ | Won't be any |
+| - 1.21.11 | ✔️ | Сompleted |
+| - 26.1.x | ✔️ | Сompleted |
+| - 26.2 | ✔️ | Сompleted |
 
 <details>
 <summary>Rus</summary>
 
 
 # ColorLight
+**ColorLight / С Шейдерами / Ванилла**
+
+![Mod Enable / With Shader / Vanilla](https://cdn.modrinth.com/data/cached_images/54a6e293b9c6827ac9da645298fb0942abb07dc1_0.webp)
 
 ColorLight — это попытка реализовать цветное освещение для огромного количества модов и ресурспаков без использования заранее заданного списка светящихся блоков, при этом сохранив возможность настраивать этот список вручную.
 
@@ -114,7 +61,7 @@ ColorLight — это попытка реализовать цветное ос�
 * Определяет преобладающий цвет.
 * Использует этот цвет для освечения блока.
 
-## Настройка
+### Настройка
 
 Большинство параметров мода можно настроить через **Sodium**.
 
@@ -124,80 +71,22 @@ ColorLight — это попытка реализовать цветное ос�
 * ресурспаков;
 * команд.
 
-## Вкладка «Fun»
+Командами можно создавать собственные источники света.
 
-В моде есть отдельная вкладка **«Fun»**, предназначенная для экспериментов с освещением. Например, она позволяет:
+### Поддерживаемые Версии
 
-* изменять баланс сканирования пикселей;
-* увеличивать радиус свечения;
-* настраивать интенсивность освещения;
-* и многое другое.
-
-
-<details>
-<summary>Команды</summary>
-
-**Узнать информацию о свечении блока, на который вы смотрите**
-
-```text
-/colorlight info
-```
-
-**Узнать информацию о свечении указанного блока**
-
-```text
-/colorlight info_block <блок>
-```
-
-**Изменить цвет свечения указанного блока**
-
-```text
-/colorlight repaint <блок> <red> <green> <blue> <сила_свечения>
-```
-
-**Вернуть цвет свечения указанного блока по умолчанию**
-
-```text
-/colorlight repaint_return <блок>
-```
-
-**Изменить цвет свечения блока, на который вы смотрите**
-
-```text
-/colorlight repaint_block <red> <green> <blue> <сила_свечения>
-```
-
-**Вернуть (или удалить) пользовательский цвет свечения блока, на который вы смотрите**
-
-```text
-/colorlight repaint_block_return
-```
-
-**Добавить цветное свечение любому блоку, на который вы смотрите**
-
-```text
-/colorlight add_light <red> <green> <blue> <сила_свечения> <сохранить_позицию_источника>
-```
-
-**Убрать свечение у любого блока, на который вы смотрите**
-
-```text
-/colorlight remove_light
-```
-
-**Создать настраиваемый светящийся блок**
-
-```text
-/colorlight add_light_block <red> <green> <blue> <размер_блока> <сила_свечения> <сохранить_позицию_источника>
-```
-
-**Удалить настраиваемый светящийся блок, на который вы смотрите**
-
-```text
-/colorlight remove_light_block
-```
+| Версия | Поддержка | Прогресс |
+| :--- | :---: | :---: |
+| - 1.20.1 | ✔️ | Разработка |
+| - 1.21.1 | ✔️ Приоретет | Завершен |
+| - 1.21.2-3 | ❌ | Не будет |
+| - 1.21.4 | ❌ | Не будет |
+| - 1.21.5 | ❌ | Не будет |
+| - 1.21.6-8 | ❌ | Не будет |
+| - 1.21.9-10 | ❌ | Не будет |
+| - 1.21.11 | ✔️ | Завершен |
+| - 26.1.x | ✔️ | Завершен |
+| - 26.2 | ✔️ | Завершен |
 
 </details>
-</details>
-
 
