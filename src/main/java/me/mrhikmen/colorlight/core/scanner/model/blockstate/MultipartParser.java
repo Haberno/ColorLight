@@ -1,6 +1,5 @@
 package me.mrhikmen.colorlight.core.scanner.model.blockstate;
 
-import me.mrhikmen.colorlight.config.ColorLightConfig;
 import me.mrhikmen.colorlight.core.scanner.model.ModelTextureResolver;
 
 import net.minecraft.resources.Identifier;
@@ -12,7 +11,7 @@ import com.google.gson.JsonObject;
 
 public class MultipartParser {
 
-    public MultipartParser(JsonObject json, int i, ColorLightConfig config) {
+    public MultipartParser(JsonObject json, int i) {
 
         JsonArray multipart = json.getAsJsonArray("multipart");
 
@@ -39,7 +38,7 @@ public class MultipartParser {
             }
         }
 
-        ModelTextureResolver.resolve(models, i, config);
+        ModelTextureResolver.resolve(models, i);
 
     }
 

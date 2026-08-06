@@ -8,13 +8,15 @@ public class BlockSettings {
     public int g;
     public int b;
     public int light;
+    public boolean enable;
 
     public BlockSettings() {
     }
 
-    public BlockSettings(Identifier block, int light) {
+    public BlockSettings(Identifier block, int light, boolean enable) {
         this.block = String.valueOf(block);
         this.light = light;
+        this.enable = enable;
     }
 
     public Identifier getBlock() {

@@ -29,7 +29,7 @@ public final class ColorLightCommand {
                                     .then(ClientCommandManager.argument("r", IntegerArgumentType.integer(0, ColorLightUtil.MAX))
                                             .then(ClientCommandManager.argument("g", IntegerArgumentType.integer(0, ColorLightUtil.MAX))
                                                     .then(ClientCommandManager.argument("b", IntegerArgumentType.integer(0, ColorLightUtil.MAX))
-                                                            .then(ClientCommandManager.argument("strength", IntegerArgumentType.integer(1, 15))
+                                                            .then(ClientCommandManager.argument("strength", IntegerArgumentType.integer(1, 30))
                                                                     .executes(ColorLightCommand::addAtTarget))))))
 
                             .then(ClientCommandManager.literal("reset")

@@ -18,6 +18,9 @@ public final class ColorLightBlockRegistry {
 
         for (BlockSettings entry : config.blocks) {
 
+            if (!entry.enable)
+                continue;
+
             if (entry.light <= 0)
                 continue;
 

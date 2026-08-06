@@ -21,8 +21,8 @@ public class ReloadListener implements SimpleSynchronousResourceReloadListener {
         ColorLightClient.config.load();
         ColorLightClient.config.blocks.clear();
 
-        new LightBlock(ColorLightClient.config);
-        new PathTextureBlock(ColorLightClient.config);
+        new LightBlock();
+        new PathTextureBlock();
 
         ColorLightClient.config.save();
         ColorLightBlockRegistry.load(ColorLightClient.config);
