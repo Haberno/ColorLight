@@ -31,14 +31,8 @@
   "me.colorlight.general.weight.value.0": "Off",
   "me.colorlight.general.weight.value": "%s%%",
 
-  "me.colorlight.block.enable_block": " | Enabled",
-  "me.colorlight.block.enable_block.tooltip": "Enables or disables colored lighting for this block.",
-  "me.colorlight.block.light_range_block": " | Light Range",
-  "me.colorlight.block.light_range_block.tooltip": "Adjusts how far the colored light emitted by this block reaches.",
-  "me.colorlight.block.red": " | Red",
-  "me.colorlight.block.red.tooltip": "Red in RGB format",
-  "me.colorlight.block.green": " | Green",
-  "me.colorlight.block.green.tooltip": "Green in RGB format",
-  "me.colorlight.block.blue": " | Blue",
-  "me.colorlight.block.blue.tooltip": "Blue in RGB format"
+  "me.colorlight.block.block.tooltip": "Setting this block.",
+  "me.colorlight.block.colored_lighting": "Lighting color: ",
+  "me.colorlight.block.colored_lighting_2": "Lighting color",
+  "me.colorlight.block.shade": "Shade"
 }

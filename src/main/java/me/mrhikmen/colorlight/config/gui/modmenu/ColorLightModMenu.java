@@ -1,4 +1,4 @@
-package me.mrhikmen.colorlight.config;
+package me.mrhikmen.colorlight.config.gui.modmenu;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;

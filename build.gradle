@@ -21,6 +21,10 @@ repositories {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/releases/"
     }
+    maven {
+        name = "Gegy"
+        url = "https://maven.gegy.dev"
+    }
 }
 
 dependencies {
@@ -33,7 +37,8 @@ dependencies {
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     modImplementation "net.caffeinemc:sodium-fabric:${project.sodium_version}"
-    modImplementation "net.caffeinemc:sodium-fabric-api:${project.sodium_version}"
+
+    modCompileOnly "dev.lambdaurora.lambdynamiclights:lambdynamiclights-api:${project.lambdynlights_version}"
 }
 
 processResources {

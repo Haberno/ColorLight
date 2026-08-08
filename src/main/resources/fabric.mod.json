@@ -30,21 +30,25 @@
       "me.mrhikmen.colorlight.ColorLightClient"
     ],
     "sodium:config_api_user": [
-      "me.mrhikmen.colorlight.config.ColorLightSodiumConfig"
+      "me.mrhikmen.colorlight.config.gui.sodium.ColorLightSodiumConfig"
     ],
     "modmenu": [
-      "me.mrhikmen.colorlight.config.ColorLightModMenu"
+      "me.mrhikmen.colorlight.config.gui.modmenu.ColorLightModMenu"
+    ],
+    "lambdynlights:initializer": [
+      "me.mrhikmen.colorlight.compat.lambdynlights.ColorLightLambDynLightsInitializer"
     ]
   },
   "mixins" : [
     "colorlighting.mixins.json"
     ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric-api": ">=${fabric_version}",
+    "fabricloader": "*",
+    "fabric-api": "*",
     "minecraft": "${minecraft_version}"
   },
   "suggests": {
-    "sodium": "*"
+    "sodium": "*",
+    "lambdynlights": "*"
   }
 }

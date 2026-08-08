@@ -26,6 +26,6 @@ public class ReloadListener implements SimpleSynchronousResourceReloadListener {
 
         ColorLightClient.config.save();
         ColorLightBlockRegistry.load(ColorLightClient.config);
-        ColorLightClient.LOGGER.info("ColorLight RP is loaded");
+        ColorLightClient.LOGGER.info("[ColorLight] Textures initialized");
     }
 }

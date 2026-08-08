@@ -39,15 +39,10 @@ public class Translatable {
         return Component.translatable("me.colorlight.general.weight.value", value);
     }
 
-    public static Component BLOCK_ENABLE = Component.translatable("me.colorlight.block.enable_block");
-    public static Component BLOCK_ENABLE_Tooltip = Component.translatable("me.colorlight.block.enable_block.tooltip");
-    public static Component BLOCK_LIGHT_RANGE = Component.translatable("me.colorlight.block.light_range_block");
-    public static Component BLOCK_LIGHT_RANGE_Tooltip = Component.translatable("me.colorlight.block.light_range_block.tooltip");
-    public static Component BLOCK_RED = Component.translatable("me.colorlight.block.red");
-    public static Component BLOCK_RED_Tooltip = Component.translatable("me.colorlight.block.red.tooltip");
-    public static Component BLOCK_GREEN = Component.translatable("me.colorlight.block.green");
-    public static Component BLOCK_GREEN_Tooltip = Component.translatable("me.colorlight.block.green.tooltip");
-    public static Component BLOCK_BLUE = Component.translatable("me.colorlight.block.blue");
-    public static Component BLOCK_BLUE_Tooltip = Component.translatable("me.colorlight.block.blue.tooltip");
+
+    public static Component BLOCK_Tooltip = Component.translatable("me.colorlight.block.block.tooltip");
+    public static Component COLORED_LIGHTING = Component.translatable("me.colorlight.block.colored_lighting");
+    public static Component COLORED_LIGHTING_2 = Component.translatable("me.colorlight.block.colored_lighting_2");
+    public static Component SHADE = Component.translatable("me.colorlight.block.shade");
 }
 

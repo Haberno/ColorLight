@@ -1,5 +1,7 @@
 package me.mrhikmen.colorlight;
 
+import me.mrhikmen.colorlight.compat.lambdynlights.ColorLightEntityLightTicker;
+import me.mrhikmen.colorlight.compat.lambdynlights.ColorLightLambDynLightsCompat;
 import me.mrhikmen.colorlight.config.ColorLightConfig;
 import me.mrhikmen.colorlight.core.light.ColorLightBlockRegistry;
 import me.mrhikmen.colorlight.core.light.ColorLightChunkScanner;
@@ -42,7 +44,12 @@ public class ColorLightClient implements ClientModInitializer {
         ColorLightChunkScanner.register();
         ColorLightCommand.register();
 
-        ColorLightClient.LOGGER.info("Mod is loading");
+        if (ColorLightLambDynLightsCompat.isPresent()) {
+            ColorLightEntityLightTicker.register();
+            ColorLightClient.LOGGER.info("[ColorLight] LambDynamicLights initialized");
+        }
+
+        ColorLightClient.LOGGER.info("[ColorLight] Mod initialized");
 
         ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(new ReloadListener());
     }

@@ -8,7 +8,7 @@ public class ColorLightTestModelPlugin implements ModelLoadingPlugin {
     @Override
     public void initialize(Context pluginContext) {
 
-        ColorLightClient.LOGGER.info("[ColorLight] ModelLoadingPlugin initialized, wrapping models");
+        ColorLightClient.LOGGER.info("[ColorLight] ModelLoadingPlugin initialized");
 
         pluginContext.modifyBlockModelAfterBake().register((model, context) -> new TintedBakedModel(model));
     }

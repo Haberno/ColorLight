@@ -38,7 +38,7 @@ public class PathTextureBlock {
                     } else if (json.has("multipart")) {
                         new MultipartParser(json, i);
                     } else {
-                        ColorLightClient.LOGGER.info("Model not found");
+                        ColorLightClient.LOGGER.info("[ColorLight] Model not found");
                     }
 
                 } catch (IOException e) {

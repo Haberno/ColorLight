@@ -269,7 +269,7 @@ public class ColorLightEngine {
 
     public String debugDaylight(BlockPos pos) {
         if (!(level instanceof Level realLevel))
-            return "level is not a real Level (" + level.getClass() + ")";
+            return "[ColorLight] level is not a real Level (" + level.getClass() + ")";
 
         long dayTimeRaw = realLevel.getDayTime();
         long dayTime = dayTimeRaw % 24000L;

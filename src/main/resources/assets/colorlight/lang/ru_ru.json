@@ -33,14 +33,8 @@
   "me.colorlight.general.weight.value.0": "Выкл",
   "me.colorlight.general.weight.value": "%s%%",
 
-  "me.colorlight.block.enable_block": " | Включен",
-  "me.colorlight.block.enable_block.tooltip": "Полностью включает/выключает цветное свечение у блока.",
-  "me.colorlight.block.light_range_block": " | Дальность света",
-  "me.colorlight.block.light_range_block.tooltip": "Регулирует дальность распространения цветного света у блока.",
-  "me.colorlight.block.red": " | Красный цвет",
-  "me.colorlight.block.red.tooltip": "Красный в RGB формате",
-  "me.colorlight.block.green": " | Зелёный цвет",
-  "me.colorlight.block.green.tooltip": "Зелёный в RGB формате",
-  "me.colorlight.block.blue": " | Синий цвет",
-  "me.colorlight.block.blue.tooltip": "Синий в RGB формате"
+  "me.colorlight.block.block.tooltip": "Настройка этого блока.",
+  "me.colorlight.block.colored_lighting": "Цвет освещения: ",
+  "me.colorlight.block.colored_lighting_2": "Цвет освещения",
+  "me.colorlight.block.shade": "Оттенок"
 }
