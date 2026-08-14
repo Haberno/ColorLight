@@ -11,6 +11,7 @@ import me.mrhikmen.colorlight.core.light.ColorLightCommand;
 import me.mrhikmen.colorlight.core.render.ColorLightTestModelPlugin;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -31,7 +32,7 @@ public class ColorLightClient implements ClientModInitializer {
     public void onInitializeClient() {
         config.load();
 
-        ColorLightEngineHolder.configure(config.lightRangeBlocks);
+        ColorLightEngineHolder.configure(config.lightRangeBlocks, config.USE_GPU_LIGHTING);
         ColorLightBlockRegistry.load(config);
         ColorLightDaylightRefresher.register();
 
@@ -40,6 +41,8 @@ public class ColorLightClient implements ClientModInitializer {
                 ColorLightEngineHolder.set(client.level));
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) ->
                 ColorLightEngineHolder.set(null));
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> ColorLightEngineHolder.tick());
 
         ColorLightChunkScanner.register();
         ColorLightCommand.register();

@@ -22,7 +22,7 @@ public class PathTextureBlock {
 
         for (int i = 0; i < ColorLightClient.config.blocks.size();) {
 
-            Identifier block = ColorLightClient.config.blocks.get(i).getBlock();;
+            Identifier block = ColorLightClient.config.blocks.get(i).getBlock();
 
             Identifier modelId = Identifier.fromNamespaceAndPath(block.getNamespace(), "blockstates/" + block.getPath() + ".json");
             Optional<Resource> resource = Minecraft.getInstance().getResourceManager().getResource(modelId);

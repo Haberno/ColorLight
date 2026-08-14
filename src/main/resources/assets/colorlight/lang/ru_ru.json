@@ -9,16 +9,21 @@
 
   "me.colorlight.general": "Основные",
   "me.colorlight.block": "Блоки",
-  "me.colorlight.fun": "Веселье",
 
   "me.colorlight.general.enable": "Включить мод",
   "me.colorlight.general.enable.tooltip": "Полностью включает/выключает автоматическое цветное освещение блоков.",
 
   "me.colorlight.general.light_range": "Дальность света",
-  "me.colorlight.general.light_range.tooltip": "Максимальная дальность распространения цветного света.",
+  "me.colorlight.general.light_range.tooltip": "Регулирует дальность распространения цветного света.",
   "me.colorlight.general.light_range.value.1": "%s блок",
   "me.colorlight.general.light_range.value.1-5": "%s блокa",
   "me.colorlight.general.light_range.value": "%s блоков",
+
+  "me.colorlight.general.use_gpu_lighting": "Считать освещение на GPU",
+  "me.colorlight.general.use_gpu_lighting.tooltip": "Расчёт распространения цветного света идёт через compute-шейдер на видеокарте вместо CPU. При старте автоматически выполняется небольшой тестовый расчёт: если GPU/драйвер с ним не справляется или выдаёт неверный результат, мод бесшумно переключается на CPU.",
+
+  "me.colorlight.general.smooth_lighting": "Сглаживание цветного света",
+  "me.colorlight.general.smooth_lighting.tooltip": "Плавно смешивает цветной свет между соседними блоками в каждой вершине. Если выключить — на грань берётся один сэмпл вместо интерполяции, это дешевле. Работает одинаково независимо от того, считается свет на CPU или на GPU.",
 
   "me.colorlight.general.weight": "Регулировка параметров сканера",
   "me.colorlight.general.brightness_weight": "Сила яркости",

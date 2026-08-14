@@ -4,10 +4,10 @@ import me.mrhikmen.colorlight.ColorLightClient;
 import me.mrhikmen.colorlight.config.BlockSettings;
 import me.mrhikmen.colorlight.core.light.ColorLightEngine;
 import me.mrhikmen.colorlight.core.light.ColorLightEngineHolder;
+import me.mrhikmen.colorlight.core.util.ColorLightRenderUtil;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -163,12 +163,12 @@ public final class ColorLightEntityLightTicker {
     }
 
     private static void markDirtyAround(ColorLightEngine engine, BlockPos pos) {
-        var client = Minecraft.getInstance();
+        var client = net.minecraft.client.Minecraft.getInstance();
         if (client.level == null || pos == null)
             return;
 
         int radius = engine.getMaxRangeBlocks() + 1;
-        Minecraft.getInstance().levelRenderer.setBlocksDirty(
+        ColorLightRenderUtil.setBlocksDirty(client.level,
                 pos.getX() - radius, pos.getY() - radius, pos.getZ() - radius,
                 pos.getX() + radius, pos.getY() + radius, pos.getZ() + radius
         );

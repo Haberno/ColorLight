@@ -1,6 +1,7 @@
 package me.mrhikmen.colorlight.core.scanner.texture;
 
 import me.mrhikmen.colorlight.ColorLightClient;
+
 import net.minecraft.resources.Identifier;
 
 import java.util.HashMap;
@@ -82,7 +83,7 @@ public class SearchBestPixel {
             double glowColorScore = ScanTextureBlock.glowColorScore(pixel);
 
             pixel.score =
-                    brightness * (ColorLightClient.config.BRIGHTNESS_WEIGHT / 100) +
+                            brightness * (ColorLightClient.config.BRIGHTNESS_WEIGHT / 100) +
                             localBrightness * (ColorLightClient.config.LOCAL_WEIGHT / 100) +
                             regionScore * (ColorLightClient.config.REGION_WEIGHT / 100) +
                             alphaScore * (ColorLightClient.config.ALPHA_WEIGHT / 100) +

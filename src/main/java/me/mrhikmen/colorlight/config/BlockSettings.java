@@ -10,9 +10,6 @@ public class BlockSettings {
     public int light;
     public boolean enable;
 
-    public BlockSettings() {
-    }
-
     public BlockSettings(Identifier block, int light, boolean enable) {
         this.block = String.valueOf(block);
         this.light = light;

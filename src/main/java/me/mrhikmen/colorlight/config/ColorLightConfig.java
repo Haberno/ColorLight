@@ -16,6 +16,10 @@ public class ColorLightConfig {
 
     public int lightRangeBlocks = 15;
 
+    public boolean USE_GPU_LIGHTING = true;
+
+    public boolean SMOOTH_LIGHTING = true;
+
     public int BRIGHTNESS_WEIGHT     = 100;
     public int LOCAL_WEIGHT          = 100;
     public int REGION_WEIGHT         = 0;
@@ -39,6 +43,8 @@ public class ColorLightConfig {
                 this.ENABLE = loaded.ENABLE;
                 this.blocks = loaded.blocks;
                 this.lightRangeBlocks = loaded.lightRangeBlocks > 0 ? loaded.lightRangeBlocks : this.lightRangeBlocks;
+                this.USE_GPU_LIGHTING = loaded.USE_GPU_LIGHTING;
+                this.SMOOTH_LIGHTING = loaded.SMOOTH_LIGHTING;
 
                 this.BRIGHTNESS_WEIGHT = loaded.BRIGHTNESS_WEIGHT > -1 ? loaded.BRIGHTNESS_WEIGHT : this.BRIGHTNESS_WEIGHT;
                 this.LOCAL_WEIGHT = loaded.LOCAL_WEIGHT > -1 ? loaded.LOCAL_WEIGHT : this.LOCAL_WEIGHT;

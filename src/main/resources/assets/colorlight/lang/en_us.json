@@ -7,7 +7,6 @@
 
   "me.colorlight.general": "General",
   "me.colorlight.block": "Block",
-  "me.colorlight.fun": "Fun",
 
   "me.colorlight.general.enable": "Enable mod",
   "me.colorlight.general.enable.tooltip": "Fully enables/disables automatic colored block lighting.",
@@ -17,6 +16,12 @@
   "me.colorlight.general.light_range.value.1": "%s block",
   "me.colorlight.general.light_range.value.1-5": "%s block",
   "me.colorlight.general.light_range.value": "%s blocks",
+
+  "me.colorlight.general.use_gpu_lighting": "Compute lighting on GPU",
+  "me.colorlight.general.use_gpu_lighting.tooltip": "Uses a GPU compute shader to calculate colored light propagation instead of the CPU. On startup a small test calculation runs automatically; if the GPU/driver fails or gives a wrong result, it silently falls back to CPU.",
+
+  "me.colorlight.general.smooth_lighting": "Smooth colored lighting",
+  "me.colorlight.general.smooth_lighting.tooltip": "Blends colored light between neighboring blocks at each vertex for a softer look. Disabling it uses one flat sample per face instead, which is cheaper. Works the same whether lighting is computed on the CPU or the GPU.",
 
   "me.colorlight.general.weight": "Scanner parameter adjustment",
   "me.colorlight.general.brightness_weight": "Brightness strength",

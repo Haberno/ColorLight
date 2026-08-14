@@ -1,12 +1,12 @@
 package me.mrhikmen.colorlight.config.gui.screen;
 
 import me.mrhikmen.colorlight.config.Translatable;
+
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 
 public class HueBarWidget extends AbstractWidget {
@@ -31,7 +31,7 @@ public class HueBarWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float a) {
         int x0 = this.getX();
         int y0 = this.getY();
         int w = this.getWidth();
@@ -56,7 +56,7 @@ public class HueBarWidget extends AbstractWidget {
     }
 
     @Override
-    protected void onDrag(MouseButtonEvent event, double dragX, double dragY) {
+    protected void onDrag(MouseButtonEvent event, double dx, double dy) {
         applyFromMouse(event);
     }
 
@@ -67,7 +67,7 @@ public class HueBarWidget extends AbstractWidget {
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput output) {
+    public void updateWidgetNarration(NarrationElementOutput output) {
         output.add(NarratedElementType.TITLE, this.getMessage());
     }
 }

@@ -1,85 +1,84 @@
 # ColorLight
 
-**ColorLight / ColorLight with Shaders / Vanilla**
-
+**ColorLight / ColorLight With Shaders / Vanilla**
 ![Mod Enable / ColorLight With Shader / Vanilla](https://cdn.modrinth.com/data/cached_images/54a6e293b9c6827ac9da645298fb0942abb07dc1_0.webp)
 
-ColorLight is an attempt to bring colored lighting support to a wide range of mods and resource packs without relying on a predefined list of light-emitting blocks, while still allowing users to customize that list manually.
+**ColoLight** is a mod that automatically determines how a block should glow and generates colored lighting based on that.
 
-ColorLight works with all shaders, whether they already support colored lighting or not. The mod is also compatible with most optimization mods, although there are some exceptions. You can find more information or report compatibility issues on the [GitHub issues page](https://github.com/MrHikmen/ColorLight/issues).
+All shaders are compatible with ColorLight and do not require support from their authors.
 
-ColorLight can also be used for map making and building projects, as it allows you to create custom light sources using commands. Multiplayer support is planned, allowing custom light source data to be synchronized with other players.
+ColorLight is well suited for building maps, structures, or vanilla servers, as the mod allows you to create your own light sources through commands. Soon, you will be able to share your light sources with other players, both on servers and in local worlds, by transferring save files.
 
-### How It Works
+### How the Mod Works
 
-When the mod detects a light-emitting block, it:
+When a glowing block is detected, the mod:
 
-* Finds the block's texture.
-* Analyzes the texture.
-* Determines its dominant color (currently with varying accuracy).
-* Uses that color as the block's light color.
+* Finds the block's texture
+* Analyzes it
+* Determines the dominant color
+* Uses this color to illuminate the block
 
-### Configuration
+### Settings
 
-All current mod settings are available through **Sodium**.
+All mod settings are currently located in **Sodium**.
 
-The **General** tab allows you to:
+The *"General"* tab is responsible for:
 
-* Enable or disable the mod.
-* Enable predefined lighting (a built-in lighting configuration for vanilla blocks only).
-* Adjust the light radius.
-* Adjust the lighting balance.
+* Enabling the mod
+* Adjusting the glow radius
+* Enabling GPU calculations
+* Enabling light smoothing
+* Adjusting the lighting balance
 
-The **Blocks** tab allows you to:
+The *"Blocks"* tab is responsible for:
 
-* Enable or disable lighting for individual blocks.
-* Set a custom light radius for each block.
-* Customize the light color for each block.
+* Enabling individual blocks
+* Adjusting the lighting radius separately for each block
+* Adjusting the glow color separately for each block
 
-### Сompatible
+### Compatibility
 
-ColorLight is fully compatible with all mods that add glowing blocks. It is also compatible with many optimization mods and all shaders, since the mod uses its own separate lighting engine that Minecraft itself knows nothing about.
+Any mod that adds its own light block will work natively with correct colored lighting, which can be adjusted separately in the settings if desired.
 
-However, not all mods that add certain features work out of the box, so separate compatibility code has to be written for them. Here are those mods and the current compatibility development progress:
+All optimization mods are supported. If you find a mod that still does not work with ColorLight, first check whether it has already been reported on the [GitHub issues page](https://github.com/MrHikmen/ColorLight/issues). If it hasn't, please report your findings.
 
-| Mod               | Support |  Development Progress |
-| :---------------- | :-----: | :-------------------: |
-| LambDynamicLights |    ✅    |       Completed       |
-| Sable (NeoForge)  |    ✅    |     In development    |
-| Voxy              |    ✅    |     In development    |
-| Distant Horizons  |    ❌    | Will not be supported |
-| VulkanMod         |    ❌    | Will not be supported |
+However, some mods require separate ColorLight support, specifically mods that add features different from vanilla Minecraft.
+
+| Mod                 | Support | Development Progress |
+| :------------------ | :-----: | :------------------: |
+| - LambDynamicLights |    ✅    |       Completed      |
+| - Create Aeronautics  |    ✅    |    In Development    |
+| - Voxy              |    ✅    |    In Development    |
+| - Distant Horizons  |    ❌    |      Will Not Be     |
 
 ### Supported Versions
 
-| Version | Supported | Porting Status |
-| :--- | :---: | :---: |
-| - 1.20.1 | ✅ | In Progress |
-| - 1.21.1 | ✅ | Completed |
-| - 1.21.2–3| ❌ | Not Planned |
-| - 1.21.4 | ❌ | Not Planned |
-| - 1.21.5 | ❌ | Not Planned |
-| - 1.21.6–8 | ❌ | Not Planned |
-| - 1.21.9–10 | ❌ | Not Planned |
-| - 1.21.11 | ✅ | Completed |
-| - 26.1.x | ✅ | Completed |
-| - 26.2 | ✅ | Completed |
+| Version     | Support |     Porting    |
+| :---------- | :-----: | :------------: |
+| - 1.20.1    |    ✅    | In Development |
+| - 1.21.1    |    ✅    |    Completed   |
+| - 1.21.2-3  |    ❌    |   Will Not Be  |
+| - 1.21.4    |    ❌    |   Will Not Be  |
+| - 1.21.5    |    ❌    |   Will Not Be  |
+| - 1.21.6-8  |    ❌    |   Will Not Be  |
+| - 1.21.9-10 |    ❌    |   Will Not Be  |
+| - 1.21.11   |    ✅    |    Completed   |
+| - 26.1.x    |    ✅    |    Completed   |
+| - 26.2      |    ✅    |    Completed   |
 
 <details>
 <summary>Rus</summary>
 
-
 # ColorLight
-**ColorLight / ColorLight С Шейдерами / Ванилла**
 
+**ColorLight / ColorLight С Шейдерами / Ванилла**
 ![Mod Enable / ColorLight With Shader / Vanilla](https://cdn.modrinth.com/data/cached_images/54a6e293b9c6827ac9da645298fb0942abb07dc1_0.webp)
 
-ColorLight — это попытка реализовать цветное освещение для огромного количества модов и ресурспаков без использования заранее заданного списка светящихся блоков, при этом со
-хранив возможность настраивать этот список вручную.
+**ColoLight** - мод, который сам определяет, как должен светится блок, и из результата создает цветное освещение.
 
-ColorLight работает со всеми шейдерами и с теми, у которых нет своего цветного освещения, и с теми, у которых есть цветное освещение. Так же мод функционирует с оптимизирующими модами, но есть исключения о них вы можете узнать или сами написать на [GitHub issues page](https://github.com/MrHikmen/ColorLight/issues).
+Все шейдеры совместимы с ColorLight и не требуют поддержки от авторов.
 
-ColorLight может использоваться для строительства карта или построек, так как у мода есть возможность создавать источники света в ручную через команды, вскоре мод сможет работать и в мультиплеере передавая данные о новых источниках света другим игрокам.
+ColorLight хорошо подходит для строительства карта, построек или для ванильных серверов, ведь у мода есть возможность создавать свои собстенные источники света через команды. Вскоре вы сможете обмениваться своми источниками с другими игроками, как на сервере, так и на локальных мирах передавая сохранения.
 
 ### Как работает мод
 
@@ -87,7 +86,7 @@ ColorLight может использоваться для строительст
 
 * Находит текстуру блока
 * Анализирует её
-* Определяет преобладающий цвет (пока успех этого относителен)
+* Определяет преобладающий цвет
 * Использует этот цвет для освечения блока
 
 ### Настройки
@@ -97,8 +96,10 @@ ColorLight может использоваться для строительст
 Вкладка *"Основные"* отвечает за:
 
 * Включение мода
-* Включение настроеного освещение (список уже готового освещения только для ванильных блоков)
 * Регулировка радиуса свечения
+* Включение расчетов на GPU
+* Включения сглаживания света
+
 * Регулиравка баланса освещения
 
 Вкладка *"Блоки"* отвечает за:
@@ -109,21 +110,22 @@ ColorLight может использоваться для строительст
 
 ### Совместимость
 
-ColorLight полностью совместим со всеми модами, которые добавляют светящиеся блоки, так же есть совместимость со многими модами на оптимизацию и со всеми шейдерами, так как мод строит свой отдельный движок освещения, о котором майнкрафт ничего не знает.
+Совместим любой мод, который добаляет свой световой блок будет работать нативно с коректным цветным светом, который при желании можно настроить отдельно в настройках.
 
-Но не все моды, добавлющие какие-то аспекты работаю изначально, поэтому для них пишется отдельный код совместимости. Вот такие моды и их прогресс совместимости:
+Все моды на оптимизацию поддерживаются, если вы нашли мод, которой все же не работает с ColorLight сначала проверте не писали об этом раньше на [GitHub issues page](https://github.com/MrHikmen/ColorLight/issues), если нет, то пишите о своей находке.
+
+Но есть моды которые требуют отдельной поддержки ColorLight, а именно моды добавляющие специфические особенности отличные от ванильного Майнкрафта
 
 | Мод                 | Поддержка | Прогресс Разработки |
 |:--------------------|:---------:|:-------------------:|
 | - LambDynamicLights |     ✅     |      Завершен       |
-| - Sable (neoforge)  |     ✅     |    В разработке     |
+| - Create Aeronautics  |     ✅     |    В разработке     |
 | - Voxy              |     ✅     |    В разработке     |
 | - Distant Horizons  |     ❌     |      Не будет       |
-| - VulkanMod         |     ❌     |      Не будет       |
 
 ### Поддерживаемые Версии
 
-| Версия | Поддержка | Перенос |
+| Версия | Поддержка | Перенос | 
 | :--- | :---: | :---: |
 | - 1.20.1 | ✅ | В разработке |
 | - 1.21.1 | ✅ | Завершен |

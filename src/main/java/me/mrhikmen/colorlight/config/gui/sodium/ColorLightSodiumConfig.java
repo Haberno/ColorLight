@@ -8,6 +8,7 @@ import me.mrhikmen.colorlight.config.gui.screen.ColorLightBlockConfigScreen;
 import me.mrhikmen.colorlight.core.light.ColorLightBlockRegistry;
 import me.mrhikmen.colorlight.core.light.ColorLightChunkScanner;
 import me.mrhikmen.colorlight.core.light.ColorLightEngineHolder;
+import me.mrhikmen.colorlight.core.util.ColorLightRenderUtil;
 
 import net.caffeinemc.mods.sodium.api.config.ConfigEntryPoint;
 import net.caffeinemc.mods.sodium.api.config.ConfigEntryPointForge;
@@ -64,6 +65,22 @@ public class ColorLightSodiumConfig implements ConfigEntryPoint {
                                         .setFlags(OptionFlag.REQUIRES_RENDERER_RELOAD)
                                         .setBinding(value -> config.lightRangeBlocks = value, () -> config.lightRangeBlocks)
                                         .setDefaultValue(config.lightRangeBlocks)
+                                )
+                                .addOption(builder.createBooleanOption(Identifier.parse("colorlight:use_gpu_lighting"))
+                                        .setName(Translatable.USE_GPU_LIGHTING)
+                                        .setTooltip(Translatable.USE_GPU_LIGHTING_Tooltip)
+                                        .setStorageHandler(this::save)
+                                        .setFlags(OptionFlag.REQUIRES_RENDERER_RELOAD)
+                                        .setBinding(value -> config.USE_GPU_LIGHTING = value, () -> config.USE_GPU_LIGHTING)
+                                        .setDefaultValue(config.USE_GPU_LIGHTING)
+                                )
+                                .addOption(builder.createBooleanOption(Identifier.parse("colorlight:smooth_lighting"))
+                                        .setName(Translatable.SMOOTH_LIGHTING)
+                                        .setTooltip(Translatable.SMOOTH_LIGHTING_Tooltip)
+                                        .setStorageHandler(this::save)
+                                        .setFlags(OptionFlag.REQUIRES_ASSET_RELOAD)
+                                        .setBinding(value -> config.SMOOTH_LIGHTING = value, () -> config.SMOOTH_LIGHTING)
+                                        .setDefaultValue(config.SMOOTH_LIGHTING)
                                 )
                         )
                         .addOptionGroup(builder.createOptionGroup()
@@ -271,27 +288,41 @@ public class ColorLightSodiumConfig implements ConfigEntryPoint {
         }
         return page;
     }
-
+    private static final long SAVE_DEBOUNCE_MS = 150L;
+    private static final java.util.concurrent.ScheduledExecutorService SAVE_DEBOUNCER = java.util.concurrent.Executors.newSingleThreadScheduledExecutor(
+            runnable -> {
+                Thread thread = new Thread(runnable, "ColorLight Config Save Debouncer");
+                thread.setDaemon(true);
+                return thread;
+            });
+    private java.util.concurrent.ScheduledFuture<?> pendingSave;
     private void save() {
+        if (pendingSave != null) {
+            pendingSave.cancel(false);
+        }
+        pendingSave = SAVE_DEBOUNCER.schedule(() -> Minecraft.getInstance().execute(this::applySaveNow), SAVE_DEBOUNCE_MS, java.util.concurrent.TimeUnit.MILLISECONDS
+        );
+    }
+
+    private void applySaveNow() {
         config.save();
-        ColorLightEngineHolder.configure(config.lightRangeBlocks);
+        ColorLightEngineHolder.configure(config.lightRangeBlocks, config.USE_GPU_LIGHTING);
         ColorLightBlockRegistry.load(config);
-        var client = Minecraft.getInstance();
+        var client = net.minecraft.client.Minecraft.getInstance();
         if (client.level != null) {
             ColorLightEngineHolder.set(client.level);
             if (config.ENABLE) {
                 ColorLightChunkScanner.rescanAll(client.level);
-            } else {
-                markWholeRenderDistanceDirty(client);
             }
+            markWholeRenderDistanceDirty(client);
         }
     }
-    private static void markWholeRenderDistanceDirty(Minecraft client) {
+    private static void markWholeRenderDistanceDirty(net.minecraft.client.Minecraft client) {
         var player = client.player;
         if (player == null || client.level == null) return;
         int renderDistanceBlocks = client.options.renderDistance().get() << 4;
         var pos = player.blockPosition();
-        Minecraft.getInstance().levelRenderer.setBlocksDirty(
+        ColorLightRenderUtil.setBlocksDirtySafe(client.level,
                 pos.getX() - renderDistanceBlocks, client.level.getMinY(), pos.getZ() - renderDistanceBlocks,
                 pos.getX() + renderDistanceBlocks, client.level.getMaxY(), pos.getZ() + renderDistanceBlocks
         );

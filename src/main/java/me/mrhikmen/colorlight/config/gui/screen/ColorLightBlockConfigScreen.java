@@ -1,8 +1,8 @@
 package me.mrhikmen.colorlight.config.gui.screen;
 
 import me.mrhikmen.colorlight.config.BlockSettings;
-
 import me.mrhikmen.colorlight.config.Translatable;
+
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Checkbox;

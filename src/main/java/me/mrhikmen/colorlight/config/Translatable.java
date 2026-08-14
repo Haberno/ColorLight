@@ -24,6 +24,12 @@ public class Translatable {
         return Component.translatable("me.colorlight.general.light_range.value", value);
     }
 
+    public static Component USE_GPU_LIGHTING = Component.translatable("me.colorlight.general.use_gpu_lighting");
+    public static Component USE_GPU_LIGHTING_Tooltip = Component.translatable("me.colorlight.general.use_gpu_lighting.tooltip");
+
+    public static Component SMOOTH_LIGHTING = Component.translatable("me.colorlight.general.smooth_lighting");
+    public static Component SMOOTH_LIGHTING_Tooltip = Component.translatable("me.colorlight.general.smooth_lighting.tooltip");
+
     public static Component WEIGHT = Component.translatable("me.colorlight.general.weight");
     public static Component BRIGHTNESS_WEIGHT = Component.translatable("me.colorlight.general.brightness_weight");
     public static Component LOCAL_WEIGHT = Component.translatable("me.colorlight.general.local_weight");
@@ -39,10 +45,8 @@ public class Translatable {
         return Component.translatable("me.colorlight.general.weight.value", value);
     }
 
-
     public static Component BLOCK_Tooltip = Component.translatable("me.colorlight.block.block.tooltip");
     public static Component COLORED_LIGHTING = Component.translatable("me.colorlight.block.colored_lighting");
     public static Component COLORED_LIGHTING_2 = Component.translatable("me.colorlight.block.colored_lighting_2");
     public static Component SHADE = Component.translatable("me.colorlight.block.shade");
 }
-

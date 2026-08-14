@@ -1,8 +1,9 @@
 package me.mrhikmen.colorlight.core.light;
 
+import me.mrhikmen.colorlight.core.util.ColorLightRenderUtil;
+
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 
 public final class ColorLightDaylightRefresher {
@@ -29,7 +30,7 @@ public final class ColorLightDaylightRefresher {
             int radius = engine.getMaxRangeBlocks() + 1;
 
             for (BlockPos sourcePos : engine.getSourcePositions()) {
-                Minecraft.getInstance().levelRenderer.setBlocksDirty(
+                ColorLightRenderUtil.setBlocksDirty(client.level,
                         sourcePos.getX() - radius, sourcePos.getY() - radius, sourcePos.getZ() - radius,
                         sourcePos.getX() + radius, sourcePos.getY() + radius, sourcePos.getZ() + radius
                 );
@@ -40,3 +41,4 @@ public final class ColorLightDaylightRefresher {
     private ColorLightDaylightRefresher() {
     }
 }
+

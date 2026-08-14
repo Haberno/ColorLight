@@ -6,7 +6,6 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 
 public class ColorSquareWidget extends AbstractWidget {
@@ -23,7 +22,7 @@ public class ColorSquareWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float a) {
         int x0 = this.getX();
         int y0 = this.getY();
         int w = this.getWidth();
@@ -40,6 +39,7 @@ public class ColorSquareWidget extends AbstractWidget {
             graphics.fillGradient(x0 + dx, y0, x0 + dx + colW, y0 + h, topColor, bottomColor);
         }
 
+        // маркер текущей выбранной точки
         int markerX = x0 + Math.round(this.color.saturation * w);
         int markerY = y0 + Math.round((1f - this.color.value) * h);
         graphics.fillGradient(markerX - 1, markerY - 1, markerX + 1, markerY + 1, 0xFFFFFFFF, 0xFFFFFFFF);
@@ -51,7 +51,7 @@ public class ColorSquareWidget extends AbstractWidget {
     }
 
     @Override
-    protected void onDrag(MouseButtonEvent event, double dragX, double dragY) {
+    protected void onDrag(MouseButtonEvent event, double dx, double dy) {
         applyFromMouse(event);
     }
 
@@ -63,7 +63,7 @@ public class ColorSquareWidget extends AbstractWidget {
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput output) {
+    public void updateWidgetNarration(NarrationElementOutput output) {
         output.add(NarratedElementType.TITLE, this.getMessage());
     }
 

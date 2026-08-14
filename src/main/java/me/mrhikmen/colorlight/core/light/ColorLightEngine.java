@@ -14,16 +14,16 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ColorLightEngine {
 
-    private static final int VANILLA_MAX_OPACITY = 15;
+    protected static final int VANILLA_MAX_OPACITY = 15;
 
     private final int maxRangeBlocks;
 
-    private final float decayPerOpacityUnit;
+    protected final float decayPerOpacityUnit;
 
-    private final ConcurrentHashMap<Long, Integer> data = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Long, Integer> sources = new ConcurrentHashMap<>();
+    protected final ConcurrentHashMap<Long, Integer> data = new ConcurrentHashMap<>();
+    protected final ConcurrentHashMap<Long, Integer> sources = new ConcurrentHashMap<>();
 
-    private final LevelAccessor level;
+    protected final LevelAccessor level;
 
     public ColorLightEngine(LevelAccessor level, int maxRangeBlocks) {
         this.level = level;
@@ -60,13 +60,13 @@ public class ColorLightEngine {
         sources.clear();
     }
 
-    private int getRaw(long key) {
+    protected int getRaw(long key) {
         Integer v = data.get(key);
         return v != null ? v : ColorLightUtil.EMPTY;
     }
 
-    public void addSource(BlockPos pos, int r, int g, int b) {
-        addSource(pos, r, g, b, 15);
+    public float getDecayPerOpacityUnit() {
+        return decayPerOpacityUnit;
     }
 
     public void addSource(BlockPos pos, int r, int g, int b, int strength) {
@@ -269,9 +269,9 @@ public class ColorLightEngine {
 
     public String debugDaylight(BlockPos pos) {
         if (!(level instanceof Level realLevel))
-            return "[ColorLight] level is not a real Level (" + level.getClass() + ")";
+            return "[ColorLight] Level is not a real Level (" + level.getClass() + ")";
 
-        long dayTimeRaw = realLevel.getDayTime();
+        long dayTimeRaw = realLevel.getBrightness(LightLayer.SKY, pos);
         long dayTime = dayTimeRaw % 24000L;
         if (dayTime < 0) dayTime += 24000L;
 
@@ -283,8 +283,78 @@ public class ColorLightEngine {
         return "dayTimeRaw=" + dayTimeRaw + " dayTime%24000=" + dayTime + " rawSky=" + rawSky + " skyExposure=" + skyExposure + " timeFactor=" + timeFactor + " finalDaylightFactor=" + finalFactor;
     }
 
-    private int getOpacity(BlockPos pos) {
+    protected int getOpacity(BlockPos pos) {
         BlockState state = level.getBlockState(pos);
         return Math.max(0, Math.min(VANILLA_MAX_OPACITY, state.getLightBlock()));
+    }
+
+    public int sampleSmoothColor(BlockPos pos, Direction face, float vx, float vy, float vz) {
+
+        BlockPos facePos = (face != null) ? pos.relative(face) : pos;
+
+        if (face == null) {
+            return ColorLightUtil.max(getColor(pos), getColor(facePos));
+        }
+
+        Direction.Axis axisA;
+        Direction.Axis axisB;
+
+        switch (face.getAxis()) {
+            case X -> { axisA = Direction.Axis.Y; axisB = Direction.Axis.Z; }
+            case Y -> { axisA = Direction.Axis.X; axisB = Direction.Axis.Z; }
+            default -> { axisA = Direction.Axis.X; axisB = Direction.Axis.Y; }
+        }
+
+        float coordA = axisCoord(axisA, vx, vy, vz);
+        float coordB = axisCoord(axisB, vx, vy, vz);
+
+        int[] offsetsA = (coordA < 0.5f) ? new int[]{-1, 0} : new int[]{0, 1};
+        int[] offsetsB = (coordB < 0.5f) ? new int[]{-1, 0} : new int[]{0, 1};
+
+        int sumR = 0, sumG = 0, sumB = 0;
+        int validSamples = 0;
+
+        for (int oa : offsetsA) {
+            for (int ob : offsetsB) {
+                BlockPos samplePos = offsetAxis(offsetAxis(facePos, axisA, oa), axisB, ob);
+
+                if (isOpaque(samplePos))
+                    continue;
+
+                int color = getColor(samplePos);
+                sumR += ColorLightUtil.r(color);
+                sumG += ColorLightUtil.g(color);
+                sumB += ColorLightUtil.b(color);
+                validSamples++;
+            }
+        }
+
+        int avg = (validSamples > 0)
+                ? ColorLightUtil.pack(Math.round(sumR / (float) validSamples), Math.round(sumG / (float) validSamples), Math.round(sumB / (float) validSamples))
+                : ColorLightUtil.EMPTY;
+
+        return ColorLightUtil.max(avg, getColor(pos));
+    }
+
+    public int sampleFlatColor(BlockPos pos, Direction face) {
+        BlockPos facePos = (face != null) ? pos.relative(face) : pos;
+        return ColorLightUtil.max(getColor(pos), getColor(facePos));
+    }
+
+    private static float axisCoord(Direction.Axis axis, float x, float y, float z) {
+        return switch (axis) {
+            case X -> x;
+            case Y -> y;
+            case Z -> z;
+        };
+    }
+
+    private static BlockPos offsetAxis(BlockPos pos, Direction.Axis axis, int amount) {
+        if (amount == 0) return pos;
+        return switch (axis) {
+            case X -> pos.offset(amount, 0, 0);
+            case Y -> pos.offset(0, amount, 0);
+            case Z -> pos.offset(0, 0, amount);
+        };
     }
 }

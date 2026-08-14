@@ -4,6 +4,8 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 
 import me.mrhikmen.colorlight.config.Translatable;
+import me.mrhikmen.colorlight.core.util.ColorLightRenderUtil;
+
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -29,7 +31,7 @@ public final class ColorLightCommand {
                                     .then(ClientCommandManager.argument("r", IntegerArgumentType.integer(0, ColorLightUtil.MAX))
                                             .then(ClientCommandManager.argument("g", IntegerArgumentType.integer(0, ColorLightUtil.MAX))
                                                     .then(ClientCommandManager.argument("b", IntegerArgumentType.integer(0, ColorLightUtil.MAX))
-                                                            .then(ClientCommandManager.argument("strength", IntegerArgumentType.integer(1, 30))
+                                                            .then(ClientCommandManager.argument("strength", IntegerArgumentType.integer(0, 30))
                                                                     .executes(ColorLightCommand::addAtTarget))))))
 
                             .then(ClientCommandManager.literal("reset")
@@ -69,12 +71,13 @@ public final class ColorLightCommand {
 
         engine.clearAll();
 
-        var player = Minecraft.getInstance().player;
-        if (player != null) {
+        var client = Minecraft.getInstance();
+        var player = client.player;
+        if (player != null && client.level != null) {
             BlockPos pos = player.blockPosition();
             int radius = 64;
 
-            Minecraft.getInstance().levelRenderer.setBlocksDirty(
+            ColorLightRenderUtil.setBlocksDirty(client.level,
                     pos.getX() - radius, pos.getY() - radius, pos.getZ() - radius,
                     pos.getX() + radius, pos.getY() + radius, pos.getZ() + radius
             );
@@ -85,6 +88,8 @@ public final class ColorLightCommand {
     }
 
     private static int addAtTarget(CommandContext<FabricClientCommandSource> ctx) {
+
+        ColorLightCommand.removeAtTarget(ctx);
 
         BlockPos pos = targetPos();
         if (pos == null) {
@@ -138,10 +143,14 @@ public final class ColorLightCommand {
     }
 
     private static void markDirtyAround(BlockPos pos) {
+        var client = Minecraft.getInstance();
+        if (client.level == null)
+            return;
+
         ColorLightEngine engine = ColorLightEngineHolder.get();
         int radius = (engine != null ? engine.getMaxRangeBlocks() : 15) + 1;
 
-        Minecraft.getInstance().levelRenderer.setBlocksDirty(
+        ColorLightRenderUtil.setBlocksDirty(client.level,
                 pos.getX() - radius, pos.getY() - radius, pos.getZ() - radius,
                 pos.getX() + radius, pos.getY() + radius, pos.getZ() + radius
         );
