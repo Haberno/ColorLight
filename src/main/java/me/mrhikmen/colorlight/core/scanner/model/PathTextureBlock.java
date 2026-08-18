@@ -46,8 +46,7 @@ public class PathTextureBlock {
                 }
             } else {
 
-                Identifier textureId = Identifier.parse(block.getNamespace() + ":block/" + block.getPath());
-                Identifier texture = Identifier.fromNamespaceAndPath(textureId.getNamespace(), "textures/" + textureId.getPath() + ".png");
+                Identifier texture = Identifier.fromNamespaceAndPath(block.getNamespace(), "block/" + block.getPath());
 
                 PixelData best = SearchBestPixel.search(texture);
 

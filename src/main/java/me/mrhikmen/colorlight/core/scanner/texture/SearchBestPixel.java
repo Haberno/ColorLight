@@ -16,6 +16,9 @@ public class SearchBestPixel {
 
         ScanTextureBlock.TextureData texture = ScanTextureBlock.scan(fileId);
 
+        if (texture == null || texture.pixels.isEmpty())
+            return null;
+
         long avgR = 0;
         long avgG = 0;
         long avgB = 0;
@@ -38,9 +41,6 @@ public class SearchBestPixel {
         avgR /= count;
         avgG /= count;
         avgB /= count;
-
-        if (texture == null || texture.pixels.isEmpty())
-            return null;
 
         List<ScanTextureBlock.Component> components = ScanTextureBlock.findComponents(texture);
 
